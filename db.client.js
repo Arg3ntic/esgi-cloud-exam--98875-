@@ -2,15 +2,20 @@ const { Sequelize } = require('sequelize')
 
 // database
 const sequelize = new Sequelize(
-  'postgres://esgi_cloud_exam_db_98875_user:hXd7urzxuTqW9i7a9qt816KM7BebPqzGo@dpg-ct03nva3esus7385rki0-a.frankfurt-postgres.render.com:5432/esgi_cloud_exam_db_98875', // TODO
+  process.env.DB_NAME,
+  process.env.DB_USER,
+  process.env.DB_PASSWORD,
   {
-    dialectOptions: {
-      ssl: {
-        require: true,
-        rejectUnauthorized: false,
+      host: process.env.DB_HOST,
+      port: process.env.DB_PORT,
+      dialect: 'postgres',
+      dialectOptions: {
+          ssl: {
+              require: true,
+              rejectUnauthorized: false,
+          },
       },
-    },
-  },
+  }
 );
 
 // authentication and synchronization
